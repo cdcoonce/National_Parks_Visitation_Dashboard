@@ -44,20 +44,19 @@ ui <- fluidPage(
                   value = c(min(parks_data$Year, na.rm = TRUE), max(parks_data$Year, na.rm = TRUE)),
                   step = 4, sep = ""),
       
-      # Outputs to display region and state
-      # textOutput("parkText"),  # Output for park
-      textOutput("regionText"),  # Output for region
-      textOutput("stateText")    # Output for state
-    ),
-    
-    # Main panel for displaying outputs
-    mainPanel(
-      plotOutput("visitationPlot"),  # Plot for time-series data
-      dataTableOutput("parkTable"),   # Data table for detailed park data
-    
+      # Outputs to display region and state with spacing adjustments
+      tags$div(
+        style = "margin-top: px; margin-bottom: 2px;",
+        textOutput("regionText")  # Output for region
+      ),
+      tags$div(
+        style = "margin-bottom: 15px;",
+        textOutput("stateText")   # Output for state
+      ),
+      
       # Legend for the data table colors
       tags$div(
-        style = "margin-top: 20px;",
+        style = "margin-top: 10px;",
         h4("Legend for Visitor Colors"),
         tags$ul(
           tags$li(tags$span(style = "display:inline-block;width:15px;height:15px;background-color:#87bc45;"), " 0 - 100,000 Visitors"),
@@ -66,6 +65,12 @@ ui <- fluidPage(
           tags$li(tags$span(style = "display:inline-block;width:15px;height:15px;background-color:#ea5545;"), " > 1,000,000 Visitors")
         )
       )
+    ),
+    
+    # Main panel for displaying outputs
+    mainPanel(
+      plotOutput("visitationPlot"),  # Plot for time-series data
+      dataTableOutput("parkTable")   # Data table for detailed park data
     )
   )
 )
@@ -90,13 +95,9 @@ server <- function(input, output) {
     unique(filteredData()$State)
   })
   
-  # selectedPark <- reactive({
-  #   unique(filteredData()$Park)
-  # })
-  
   # Render the region and state text outputs
-  output$parkText <- renderText({
-    paste("Park(s):", paste(selectedPark(), collapse = ", "))
+  output$stateText <- renderText({
+    paste("State(s):", paste(selectedState(), collapse = ", "))
   })
   
   
@@ -104,9 +105,6 @@ server <- function(input, output) {
     paste("Region(s):", paste(selectedRegion(), collapse = ", "))
   })
   
-  # output$stateText <- renderText({
-  #   paste("State(s):", paste(selectedState(), collapse = ", "))
-  # })
   
   # Render the time-series plot
   output$visitationPlot <- renderPlot({

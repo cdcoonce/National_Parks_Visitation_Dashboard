@@ -31,7 +31,7 @@ ui <- fluidPage(
   # Sidebar layout with input and output definitions
   sidebarLayout(
     sidebarPanel(
-      # Dropdown for selecting multiple parks
+      # Drop-down for selecting multiple parks
       selectInput("selectedPark", "Choose National Parks:", 
                   choices = unique(parks_data$Park),
                   selected = unique(parks_data$Park)[1],
@@ -47,11 +47,11 @@ ui <- fluidPage(
       # Outputs to display region and state with spacing adjustments
       tags$div(
         style = "margin-top: px; margin-bottom: 2px;",
-        textOutput("regionText")  # Output for region
+        textOutput("regionText")
       ),
       tags$div(
         style = "margin-bottom: 15px;",
-        textOutput("stateText")   # Output for state
+        textOutput("stateText")   
       ),
       
       # Legend for the data table colors
@@ -69,8 +69,8 @@ ui <- fluidPage(
     
     # Main panel for displaying outputs
     mainPanel(
-      plotOutput("visitationPlot"),  # Plot for time-series data
-      dataTableOutput("parkTable")   # Data table for detailed park data
+      plotOutput("visitationPlot"),
+      dataTableOutput("parkTable")  
     )
   )
 )

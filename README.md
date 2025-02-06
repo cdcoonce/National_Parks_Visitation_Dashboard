@@ -1,6 +1,6 @@
 # National Parks Visitation Dashboard
 
-This Shiny dashboard allows users to interactively explore visitation data for U.S. National Parks. It provides dynamic visualizations and an interactive data table to help users better understand visitation trends over time.
+[This Shiny dashboard](https://iuq9gs-charles-coonce.shinyapps.io/visitation/) allows users to interactively explore visitation data for U.S. National Parks. It provides dynamic visualizations and an interactive data table to help users better understand visitation trends over time.
 
 ## Features
 
